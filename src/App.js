@@ -8,7 +8,7 @@ import AlbumView from './components/AlbumView';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import '../src/App.css';
 import banner from '../src/images/music_banner.jpg'
-
+import { Fragment } from 'react';
 
 const App = () => {
   
@@ -27,7 +27,7 @@ const App = () => {
         if (resData.results.length > 0) {
             return setData(resData.results)
         } else {
-            return setMessage('Not Found.')
+            return setMessage('Not Found')
         }
     }
     fetchData()
@@ -39,14 +39,14 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={
-                            <React.Fragment> 
+                            <Fragment> 
                                 <SearchContext.Provider value={{term: searchInput, handleSearch: handleSearch}}>
                                     <SearchBar />     
                                 </SearchContext.Provider>
                                 <DataContext.Provider value={data}> 
                                         <Gallery />
                                 </DataContext.Provider>
-                            </React.Fragment>
+                            </Fragment>
                         } />
                     <Route path="/album/:id" element={<AlbumView />} />
                     <Route path="/artist/:id" element={<ArtistView />} />
